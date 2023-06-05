@@ -61,7 +61,7 @@
 <div class="container">
   <div class="row">
     <div class="col s12 m4 l8">
-      <div class="h2">
+      <div class="h1">
         $\alpha$-approximation and $0.5$-approximation for maximization problems
       </div>
       <span class="content">
@@ -202,6 +202,7 @@
         Consider an arbitrary input sequence of the vertices:
         $[2,6,3,7,1,8,4,5,9]$
       </span>
+      
       <hr>
 
       {%- for slide in slides -%}
@@ -214,16 +215,6 @@
         <img src="{{ slide["img"] }}" />
       </div>
       {%- endfor -%}
-    </div>
-  </div>
-  <br />
-  <br />
-</div>
-
-<div class="control-btn-group">
-  <button class="btn btn-primary btn-lg" onclick="to(-1)">prev</button>
-  <button class="btn btn-primary btn-lg" onclick="to(1)">next</button>
-</div>
 
 
 <div class="h3">
@@ -277,6 +268,18 @@
   <br>
   [Lecture Notes] Kleinberg, Bobby (2010). Randomized Approximation Algorithms, Lecture notes on approximation algorithms, Fall 2010, CS6820: Algorithms, Cornell University, November 10–15, 2010. Retrieved from https://www.cs.cornell.edu/courses/cs6820/2010fa/handouts/approx_algs.pdf
    </span>
+    </div>
+  </div>
+  <br />
+  <br />
+  
+</div>
+
+<div class="control-btn-group">
+  <button class="btn btn-primary btn-lg" onclick="to(-1)">prev</button>
+  <button class="btn btn-primary btn-lg" onclick="to(1)">next</button>
+</div>
+
 <script>
   let currentIdx = 0;
   const totalLength = {{slides|length}};
