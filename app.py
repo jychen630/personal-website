@@ -18,13 +18,6 @@ common = {
 def index():
     return render_template('home.html', common=common)
 
-@app.route("/demo")
-def demo():
-    return render_template(
-        "demo.html",
-        slides=printHtml()
-    )
-
 @app.route('/maxcut')
 def maxcut():
     return render_template('maxcut.html', common=common, slides=printHtml())
