@@ -219,11 +219,63 @@
   <br />
   <br />
 </div>
+
 <div class="control-btn-group">
   <button class="btn btn-primary btn-lg" onclick="to(-1)">prev</button>
   <button class="btn btn-primary btn-lg" onclick="to(1)">next</button>
 </div>
 
+
+<div class="h3">
+  Does the example reveals the output invariant: it's guaranteed that the output cut is at least half as the maximum cut?
+</div>
+<span class="content"> 
+  Yes, by running the algorithm for every permutation of the input sequence ($|V|!=362800$ runs), all ($362800/362800=1.0$) the cut weights surpass half ($0.5$ ratio) the total weights.
+  
+  A code snippet for a glance:
+  ```
+  V=[2,6,3,7,1,8,4,5,9] 
+  perms = list(map(lambda pV : list(pV), set(permutations(V))))
+  holds=0
+  violatedPerm=[]
+  for pV in tqdm(perms):
+    ABweights, ratio, AAweights, BBweights=algoPrint(pV,E, draw=False)
+    ratios.append(ratio)
+    if ABweights < AAweights + BBweights:
+      violatedPerm.append(pV)
+    holds+=int(ABweights >= AAweights + BBweights)
+  print(f"Number of cut that surpass half maximum cut: {holds}/{len(ratios)}={holds/len(ratios)}")
+  ```
+  And the output is 
+  ```
+  Number of cut that surpass half maximum cut: 362800/362800=1.0
+  ```
+  </span>
+
+
+  <div class="h3">
+    Interesting observation
+  </div>
+  <span class="content"> 
+    Recall the implemental steps of our algorithm: we append the current vertex to $A$ or $B$ so as to maximize the current cut value (sum of edge weights between $A$ and $B$). This scheeme is just GREEDY algorithm!
+    More generally, the greedy algorithm might be better than the expectation when all choices are random. </span>
+
+<div class="h3">
+  Citation
+</div>
+<span class="content">
+  [Textbook] Mitzenmacher, Michael; Upfal, Eli (2005), Probability and Computing: Randomized Algorithms and Probabilistic Analysis, Cambridge.
+  
+  [Lecture Notes] Vadhan, Salil (2009), Basic Derandomization Techniques, CS255 Pseudorandomness Lecture Notes, Harvard Univesity, Retrieved from https://people.seas.harvard.edu/~salil/cs225/spring09/lecnotes/Chap3.pdf
+  
+  [Wiki] Maximum cut, Wikipedia, Retrieved from https://en.wikipedia.org/wiki/Maximum_cut
+  
+  [Lecture Notes] Vadhan, Salil (2009), Basic Derandomization Techniques,CS255 Pseudorandomness Lecture Notes, Harvard Univesity, https://people.seas.harvard.edu/~salil/cs225/spring09/lecnotes/Chap3.pdf
+  
+  [Textbook] Motwani, R., & Raghavan, P. (1995). The Probabilistic Method. In Randomized Algorithms (pp. 101–126). chapter 5, Cambridge: Cambridge University Press. http://doi.org/10.1017/CBO9780511814075.006
+  
+  [Lecture Notes] Kleinberg, Bobby (2010). Randomized Approximation Algorithms, Lecture notes on approximation algorithms, Fall 2010, CS6820: Algorithms, Cornell University, November 10–15, 2010. Retrieved from https://www.cs.cornell.edu/courses/cs6820/2010fa/handouts/approx_algs.pdf
+   </span>
 <script>
   let currentIdx = 0;
   const totalLength = {{slides|length}};
