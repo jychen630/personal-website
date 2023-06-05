@@ -291,7 +291,6 @@ def printEnd(V, E):
 ## Entry
 def printAlgo(V, E):
     imgpathS, annopathS, textS = printStart(V, E)
-    print(annopathS, textS)
     listOfDic = printSteps(V, E)
     imgpathE, annopathE, textE = printEnd(V, E)
     slides = [{"img": imgpathS, 
